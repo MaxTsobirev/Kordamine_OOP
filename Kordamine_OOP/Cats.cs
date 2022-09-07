@@ -28,6 +28,11 @@ namespace Kordamine_OOP
             this.elav = cats.elav;
 
         }
+        public Cats(string nimi,string varv)
+        {
+            this.nimi=nimi;
+            this.varv = varv;
+        }
         public override void print_Haal()
         {
             Console.WriteLine("Meow");

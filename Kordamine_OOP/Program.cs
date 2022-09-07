@@ -25,7 +25,7 @@ veelcats.muudatVanus(2);
 
 veelcats.print_Info();
 
-string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Koduloom_info.txt");
+/*string file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Koduloom_info.txt");
 using (StreamWriter text = new StreamWriter(file))
 {
     text.WriteLine("-Koer-\n");
@@ -33,19 +33,30 @@ using (StreamWriter text = new StreamWriter(file))
     
     text.WriteLine("\n-Cats-\n");
     text.WriteLine("{0} cats. Nimi: {1} {2} ta on {3} ja tema kaal on {4} kg ja ta on {5} aastat vana", cats.Toug, cats.nimi, cats.varv, cats.loomaSugu, cats.kaal, cats.vanus);
-}
+}*/
 
 List<Koduloom> loomad = new List<Koduloom>();
+loomad.Add(cats);
+loomad.Add(koer);
+
+StreamWriter sw = new StreamWriter(@"..\..\..\Koduloom_info.txt", false);
+foreach (Koduloom x in loomad)
+{
+    sw.WriteLine(x.nimi + "," + x.varv + ",");
+}
+sw.Close();
+
+List<Cats> cat = new List<Cats>();
 StreamReader sr = new StreamReader(@"..\..\..\Koduloom_info.txt");
 string text;
 while ((text = sr.ReadLine()) != null)
 {
     string[] rida = text.Split(',');
-    loomad.Add(new loomad(rida[0], rida[1]));
+    loomad.Add(new Cats(rida[0], rida[1]));
 }
 sr.Close();
 foreach (var item in loomad)
 {
-    Console.WriteLine(item.nimi + " " + item.sugu);
+    Console.WriteLine(item.nimi + " " + item.varv);
 }
 Console.ReadLine();
